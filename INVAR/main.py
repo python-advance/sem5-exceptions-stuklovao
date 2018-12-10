@@ -3,7 +3,7 @@ from prettytable import PrettyTable
 
 Book ='Book.json'
 
-def read_file(Book):
+def read(Book):
   try:
         file_book = open(Book, 'r') 
         data = json.loads(file_book.read())
@@ -11,7 +11,8 @@ def read_file(Book):
         print ("Ошибка! Файл не найден!")
 
   with open(Book, 'r') as f:
-     data = json.loads(f.read())
+     data = json.loads(f.read())  
+
 
   name = []
   surname = []
@@ -26,4 +27,20 @@ def read_file(Book):
   print(x)
   return len(data["Partisipants"]) 
 
-read_file('Book.json')
+def assert_func_file(read):
+  try:
+       name = open(read, 'r') 
+       data = json.loads(name.read())
+       return True
+  except FileNotFoundError:
+       return False  
+
+def call_func():
+    read_file = 'Book.json'
+    print(read(read_file))
+    print(assert_func_file(read_file))
+    assert assert_func_file('Book.json')== True 
+    assert assert_func_file('Book2.json')== False
+
+if __name__ == "__main__":
+   call_func()
