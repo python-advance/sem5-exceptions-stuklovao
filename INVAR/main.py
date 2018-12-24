@@ -12,6 +12,14 @@ def read(Book):
 
   with open(Book, 'r') as f:
      data = json.loads(f.read())  
+      
+ def assert_func_file(read):
+  try:
+       name = open(read, 'r') 
+       data = json.loads(name.read())
+       return True
+  except FileNotFoundError:
+       return False       
 
 
   name = []
@@ -27,13 +35,7 @@ def read(Book):
   print(x)
   return len(data["Partisipants"]) 
 
-def assert_func_file(read):
-  try:
-       name = open(read, 'r') 
-       data = json.loads(name.read())
-       return True
-  except FileNotFoundError:
-       return False  
+
 
 def call_func():
     read_file = 'Book.json'
